@@ -1,10 +1,12 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { withRouter } from 'react-router-dom';
 
 const Main = (props) => {
 
+    const [isKeyPress, toggleKeyPress] = useState(true);
+
     const assignClassName = (trIndex, index) => {
-        if(props.distanceTraveled.some(cell => cell[0] === trIndex && cell[1] === index)){
+        if (props.distanceTraveled.some(cell => cell[0] === trIndex && cell[1] === index)) {
             return 'cell activeCell';
         }
         return 'cell';
@@ -22,8 +24,32 @@ const Main = (props) => {
             }, 10000)
         }
     }
-
+    const keyDown = (event) => {
+        toggleKeyPress(false);
+        if (isKeyPress) {
+            switch (event.code) {
+                case 'KeyD':
+                case 'ArrowRight':
+                    props.takeStepRight();
+                    break;
+                case 'KeyA':
+                case 'ArrowLeft':
+                    props.takeStepLeft();
+                    break;
+                case 'KeyW':
+                case 'ArrowUp':
+                    props.takeStepUp();
+                    break;
+                case 'KeyS':
+                case 'ArrowDown':
+                    props.takeStepDown();
+                    break;
+            }
+        }
+    }
+    
     useEffect(() => {
+        window.addEventListener('keyup', keyDown);
         isWin();
         props.isOver();
     }, [props.activeCell, props.start]);

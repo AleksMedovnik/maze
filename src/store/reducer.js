@@ -146,4 +146,5 @@ export const takeStepRight = () => ({ type: STEP_RIGHT });
 export const takeStepDown = () => ({ type: STEP_BOTTOM });
 export const takeStepLeft = () => ({ type: STEP_LEFT });
 
+
 export default reducer;

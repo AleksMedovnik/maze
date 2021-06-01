@@ -1,5 +1,5 @@
 import { connect } from "react-redux";
-import { takeStepUp, takeStepRight, takeStepDown, takeStepLeft, startGame, isOver } from '../../store/reducer';
+import { takeStepUp, takeStepRight, takeStepDown, takeStepLeft, startGame, isOver, } from '../../store/reducer';
 import Main from './Main';
 
 const mapStateToProps = state => {
@@ -11,4 +11,11 @@ const mapStateToProps = state => {
     }
 }
 
-export default connect(mapStateToProps, {takeStepUp, takeStepRight, takeStepDown, takeStepLeft, startGame, isOver})(Main);
+export default connect(mapStateToProps, {
+    takeStepUp, 
+    takeStepRight, 
+    takeStepDown, 
+    takeStepLeft, 
+    startGame, 
+    isOver,
+})(Main);
