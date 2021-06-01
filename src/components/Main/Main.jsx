@@ -3,7 +3,7 @@ import { withRouter } from 'react-router-dom';
 
 const Main = (props) => {
 
-    const [isKeyPress, toggleKeyPress] = useState(true);
+    // const [isKeyPress, toggleKeyPress] = useState(true);
 
     const assignClassName = (trIndex, index) => {
         if (props.distanceTraveled.some(cell => cell[0] === trIndex && cell[1] === index)) {
@@ -21,11 +21,11 @@ const Main = (props) => {
             setTimeout(() => {
                 props.startGame();
                 props.history.push('/gameOver');
-            }, 10000)
+            }, 3000)
         }
     }
    
-    const keyUp = (event) => {
+/*     const keyUp = (event) => {
         toggleKeyPress(false);
         if (isKeyPress) {
             switch (event.code) {
@@ -47,10 +47,10 @@ const Main = (props) => {
                     break;
             }
         }
-    }
+    } */
     
     useEffect(() => {
-        window.addEventListener('keyup', keyUp);
+        // window.addEventListener('keyup', keyUp);
         isWin();
         props.isOver();
     }, [props.activeCell, props.start]);
