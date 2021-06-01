@@ -1,5 +1,6 @@
 $colorActiveCell: rgb(187, 19, 19);
 $bgWrap: rgb(106, 187, 201);
+$bgWin: rgba(106, 187, 201, 0.267);
 $tableShadow: rgb(240, 225, 13);
 $cellBorder: rgb(126, 126, 177);
 $cellColor: rgb(0, 0, 153);
@@ -82,8 +83,42 @@ img {
 .main {
   @include container ();
 }
+.win, .over{
+  @include container ();
+}
+
 .win{
   @include container ();
+  position: relative;
+  width: 100%;
+/*   background-image: url('./images/confetti.gif');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover; */
+  background: transparent;
+  z-index: 1;
+}
+
+.win::before, .win__main{
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+.win::before{
+  content: '';
+  background-image: url('./images/confetti.gif');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  z-index: 0;
+}
+.win__main{
+  @include wrap ();
+  background-color: $bgWin;
+  flex-direction: column;
+  justify-content: space-evenly;
 }
 .link {
   font-size: 1.5rem;
