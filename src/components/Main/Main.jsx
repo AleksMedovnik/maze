@@ -24,7 +24,8 @@ const Main = (props) => {
             }, 10000)
         }
     }
-    const keyDown = (event) => {
+   
+    const keyUp = (event) => {
         toggleKeyPress(false);
         if (isKeyPress) {
             switch (event.code) {
@@ -49,7 +50,7 @@ const Main = (props) => {
     }
     
     useEffect(() => {
-        window.addEventListener('keyup', keyDown);
+        window.addEventListener('keyup', keyUp);
         isWin();
         props.isOver();
     }, [props.activeCell, props.start]);
