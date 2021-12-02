@@ -19,7 +19,7 @@ const Main = (props) => {
             setTimeout(() => {
                 props.startGame();
                 props.history.push('/gameOver');
-            }, 3000)
+            }, 2000)
         }
     }
     
