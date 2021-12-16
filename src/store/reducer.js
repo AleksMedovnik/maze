@@ -4,6 +4,7 @@ const STEP_TOP = 'STEP-TOP';
 const STEP_RIGHT = 'STEP-RIGHT';
 const STEP_BOTTOM = 'STEP-BOTTOM';
 const STEP_LEFT = 'STEP-LEFT';
+const RESTART_GAME = 'RESTART-GAME';
 
 const possibleMatrices = {
     chooseMatrices() {
@@ -89,8 +90,10 @@ const initialState = {
     distanceTraveled: [],
 }
 
+let randomMatrix = possibleMatrices.chooseMatrices();
+
 const randomMatricesShoose = (state, possibleMatrices) => {
-    let randomMatrix = possibleMatrices.chooseMatrices();
+    // let randomMatrix = possibleMatrices.chooseMatrices();
     let matrix = JSON.stringify(possibleMatrices.matrices[randomMatrix]);
     matrix = JSON.parse(matrix);
 
@@ -148,6 +151,10 @@ const reducer = (state = initialState, action) => {
             return state;
 
         case START_GAME:
+            randomMatrix = possibleMatrices.chooseMatrices();
+            return randomMatricesShoose(state, possibleMatrices);
+
+        case RESTART_GAME:
             return randomMatricesShoose(state, possibleMatrices);
 
         case IS_OVER:
@@ -168,6 +175,7 @@ const reducer = (state = initialState, action) => {
 
 
 export const startGame = () => ({ type: START_GAME });
+export const restartGame = () => ({ type: RESTART_GAME });
 export const isOver = () => ({ type: IS_OVER });
 export const takeStepUp = () => ({ type: STEP_TOP });
 export const takeStepRight = () => ({ type: STEP_RIGHT });

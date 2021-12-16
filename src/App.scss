@@ -19,184 +19,228 @@ $fontURL: "./fonts/neucha-v12-cyrillic-regular.";
 
 // ###########################################################################
 
-@mixin wrap () {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: $bgWrap;
+@mixin wrap() {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: $bgWrap;
 }
-@mixin container () {
-  width: 95%;
-  min-width: none;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-evenly;
-  align-items: center;
+@mixin container() {
+    width: 95%;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
 }
 
 // ####################################################################################
 
 @font-face {
-  font-family: "Neucha";
-  font-style: normal;
-  font-weight: 400;
-  src: local("Neucha"), url($fontURL + "eot?#iefix") format("embedded-opentype"),
-    url($fontURL + "woff2") format("woff2"), url($fontURL + "woff") format("woff"),
-    url($fontURL + "ttf") format("truetype"), url($fontURL + "svg#Neucha") format("svg");
+    font-family: "Neucha";
+    font-style: normal;
+    font-weight: 400;
+    src: local("Neucha"), url($fontURL + "eot?#iefix") format("embedded-opentype"),
+        url($fontURL + "woff2") format("woff2"), url($fontURL + "woff") format("woff"),
+        url($fontURL + "ttf") format("truetype"), url($fontURL + "svg#Neucha") format("svg");
 }
 
 html {
-  font-size: 16px;
+    font-size: 16px;
 }
+
 body {
-  font-family: "Neucha";
-  font-style: normal;
-  font-weight: 400;
+    font-family: "Neucha";
+    font-style: normal;
+    font-weight: 400;
 }
 
 *,
 *::before,
 *::after {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
 ul,
 ol,
 li {
-  list-style: none;
+    list-style: none;
 }
 
 a {
-  text-decoration: none;
+    text-decoration: none;
 }
 
 img {
-  max-width: 100%;
-  height: auto;
-}
-.App{
-  @include wrap ();
-}
-.main {
-  @include container ();
-}
-.win, .over{
-  @include container ();
+    max-width: 100%;
+    height: auto;
 }
 
-.win{
-  @include container ();
-  position: relative;
-  width: 100%;
-  background: transparent;
-  z-index: 1;
+button {
+    border: none;
+}
+.App {
+    @include wrap();
 }
 
-.win::before, .win__main{
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
+.win,
+.over {
+    @include container();
 }
-.win::before{
-  content: '';
-  background-image: url('./images/confetti.gif');
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: cover;
-  z-index: 0;
+
+.win {
+    @include container();
+    position: relative;
+    width: 100%;
+    background: transparent;
+    z-index: 1;
 }
-.win__main{
-  @include wrap ();
-  background-color: $bgWin;
-  flex-direction: column;
-  justify-content: space-evenly;
+
+.win::before,
+.win__main {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+.win::before {
+    content: "";
+    background-image: url("./images/confetti.gif");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    z-index: 0;
+}
+.win__main {
+    @include wrap();
+    background-color: $bgWin;
+    flex-direction: column;
+    justify-content: space-evenly;
 }
 .link {
-  font-size: 1.5rem;
+    font-size: 1.5rem;
 }
-.table {
-  max-width: 1000px;
-  width: 100%;
-  box-shadow: 0 0 17px 0 $tableShadow;
-}
-.cell {
-  border: 3px solid $cellBorder;
-  color: $cellColor;
-  text-align: center;
-  border-radius: 5px;
-}
-.activeCell {
-  background: $colorActiveCell;
-  transition: 0.5s;
-}
+
 .menu {
-  text-align: center;
+    text-align: center;
 }
 
 .linkStart {
-  @include wrap ();
-  width: 180px;
-  height: 50px;
-  background: $linkStartBG;
-  border-radius: 5px;
-  color: $linkStartColor;
+    @include wrap();
+    width: 180px;
+    height: 50px;
+    background: $linkStartBG;
+    border-radius: 5px;
+    color: $linkStartColor;
 }
+
 .linkHome {
-  color: $linkHomeColor;
+    color: $linkHomeColor;
 }
 
 .mainMenu > li {
-  margin-bottom: 20px;
+    margin-bottom: 20px;
 }
-.arrows {
-  position: relative;
-  width: 30px;
-  height: 30px;
+
+.main {
+    @include container();
+    padding-bottom: 50px;
 }
-.arrow {
-  position: absolute;
-  font-size: 2rem;
-  color: red;
-  cursor: pointer;
-  background: transparent;
-  border: none;
+
+.table {
+    max-width: 1000px;
+    width: 100%;
+    box-shadow: 0 0 17px 0 $tableShadow;
+
+    .cell {
+        border: 3px solid $cellBorder;
+        color: $cellColor;
+        text-align: center;
+        border-radius: 5px;
+    }
+    .activeCell {
+        background: $colorActiveCell;
+        transition: 0.5s;
+    }
 }
-.arrow-top {
-  top: -20px;
-  left: -1px;
-  transform: rotate(-90deg);
+
+.controls {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+
+    .restart {
+        padding: 5px 10px;
+        border-radius: 5px;
+        font-size: 1.2rem;
+        color: $colorActiveCell;
+    }
+
+    .arrows {
+        position: relative;
+        width: 90px;
+        height: 90px;
+        border: 1px solid black;
+
+        .arrow {
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            cursor: pointer;
+            background-image: url("./images/arrow.png");
+            background-size: 30px;
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+        .arrow-top {
+            top: 0;
+            left: 30px;
+            transform: rotate(-90deg);
+        }
+        .arrow-bottom {
+            bottom: 0;
+            left: 30px;
+            transform: rotate(90deg);
+        }
+        .arrow-left {
+            top: 30px;
+            left: 0;
+            transform: rotate(180deg);
+        }
+        .arrow-right {
+            top: 30px;
+            right: 0;
+        }
+    }
 }
-.arrow-bottom {
-  bottom: -70px;
-  left: 2px;
-  transform: rotate(90deg);
-}
-.arrow-left {
-  top: 20px;
-  left: -30px;
-  transform: rotate(180deg);
-}
-.arrow-right {
-  top: 15.5px;
-  left: 30px;
-}
+
 .title {
-  text-align: center;
+    text-align: center;
 }
 .textShadow {
-  color: rgb(233, 158, 19);
-  font-family: "Neucha";
-  text-align: center;
-  font-size: 3.5rem;
-  font-weight: bold;
-  text-shadow: $textShadow_1, $textShadow_2, $textShadow_3, $textShadow_4, $textShadow_5, $textShadow_6, $textShadow_7,
-    $textShadow_8;
-  line-height: 4rem;
-  letter-spacing: 0.5rem;
-  transform: scaleY(0.7);
+    color: rgb(233, 158, 19);
+    font-family: "Neucha";
+    text-align: center;
+    font-size: 3.5rem;
+    font-weight: bold;
+    text-shadow: $textShadow_1, $textShadow_2, $textShadow_3, $textShadow_4, $textShadow_5, $textShadow_6, $textShadow_7,
+        $textShadow_8;
+    line-height: 4rem;
+    letter-spacing: 0.5rem;
+    transform: scaleY(0.7);
+}
+@media (max-height: 500px) {
+    .main {
+        flex-direction: row;
+        justify-content: space-evenly;
+
+        .controls {
+            gap: 50px;
+        }
+    }
 }

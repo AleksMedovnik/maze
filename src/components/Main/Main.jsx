@@ -22,7 +22,7 @@ const Main = (props) => {
             }, 2000)
         }
     }
-    
+
     useEffect(() => {
         isWin();
         props.isOver();
@@ -50,12 +50,15 @@ const Main = (props) => {
                     {tbody}
                 </tbody>
             </table>
-            <section className='arrows'>
-                <button className='arrow arrow-top' onClick={props.takeStepUp}>&#10148;</button>
-                <button className='arrow arrow-right' onClick={props.takeStepRight}>&#10148;</button>
-                <button className='arrow arrow-bottom' onClick={props.takeStepDown}>&#10148;</button>
-                <button className='arrow arrow-left' onClick={props.takeStepLeft}>&#10148;</button>
-            </section>
+            <div className="controls">
+                <div className='arrows'>
+                    <button className='arrow arrow-top' onClick={props.takeStepUp}></button>
+                    <button className='arrow arrow-right' onClick={props.takeStepRight}></button>
+                    <button className='arrow arrow-bottom' onClick={props.takeStepDown}></button>
+                    <button className='arrow arrow-left' onClick={props.takeStepLeft}></button>
+                </div>
+                <button onClick={props.restartGame} className="restart">Вернуться на старт</button>
+            </div>
         </div>
     )
 }
