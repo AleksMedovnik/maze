@@ -1,7 +1,15 @@
 import { useEffect } from "react";
 import { withRouter } from 'react-router-dom';
+import axios from 'axios'
+
 
 const Main = (props) => {
+
+    const startGame = (level) => {
+        axios.get(`http://127.0.0.1:8000/api/${level}`)
+            .then(res => props.getMatrix(res.data.matrix, level))
+
+    }
 
     const assignClassName = (trIndex, index) => {
         if (props.distanceTraveled.some(cell => cell[0] === trIndex && cell[1] === index)) {
@@ -12,20 +20,24 @@ const Main = (props) => {
 
     const isWin = () => {
         if (props.activeCell.includes(0) || props.activeCell.includes(11)) {
-            props.startGame();
+            props.incLevel()
             props.history.push('/win');
         }
         if (!props.start) {
             setTimeout(() => {
-                props.startGame();
+                startGame(props.level)
                 props.history.push('/gameOver');
             }, 2000)
         }
     }
 
     useEffect(() => {
-        isWin();
-        props.isOver();
+        if (props.matrix.length === 0) {
+            startGame(props.level)
+        } else {
+            isWin();
+            props.isOver();
+        }
     }, [props.activeCell, props.start]);
 
 
@@ -45,11 +57,7 @@ const Main = (props) => {
 
     return (
         <div className='main'>
-            <table className='table'>
-                <tbody>
-                    {tbody}
-                </tbody>
-            </table>
+            <table className='table'><tbody>{tbody}</tbody></table>
             <div className="controls">
                 <div className='arrows'>
                     <button className='arrow arrow-top' onClick={props.takeStepUp}></button>
@@ -57,7 +65,9 @@ const Main = (props) => {
                     <button className='arrow arrow-bottom' onClick={props.takeStepDown}></button>
                     <button className='arrow arrow-left' onClick={props.takeStepLeft}></button>
                 </div>
-                <button onClick={props.restartGame} className="restart">Вернуться на старт</button>
+                <button onClick={() => startGame(props.level)} className="restart">
+                    Вернуться на старт
+                </button>
             </div>
         </div>
     )

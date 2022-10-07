@@ -4,14 +4,17 @@ import {
     takeStepRight,
     takeStepDown,
     takeStepLeft,
-    startGame,
+    incLevel,
+    // startGame,
     isOver,
-    restartGame
+    // restartGame,
+    getMatrix
 } from '../../store/reducer';
 import Main from './Main';
 
 const mapStateToProps = state => {
     return {
+        level: state.reducer.level,
         activeCell: state.reducer.activeCell,
         matrix: state.reducer.matrix,
         start: state.reducer.start,
@@ -19,12 +22,15 @@ const mapStateToProps = state => {
     }
 }
 
+
 export default connect(mapStateToProps, {
+    getMatrix,
     takeStepUp,
     takeStepRight,
     takeStepDown,
     takeStepLeft,
-    startGame,
-    restartGame,
+    incLevel,
+    // startGame,
+    // restartGame,
     isOver,
 })(Main);

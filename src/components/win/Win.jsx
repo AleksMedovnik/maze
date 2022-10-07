@@ -5,7 +5,7 @@ export const Win = () => {
         <section className='win'>
             <div className=" win__main">
                 <h1 className='title'>Вы вышли из лабиринта!!!</h1>
-                <NavLink to='/main' className='linkStart'>Играть еще раз</NavLink>
+                <NavLink to='/main' className='linkStart'>Следующий уровень</NavLink>
             </div>
         </section>
     )
