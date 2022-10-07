@@ -22,6 +22,8 @@ const Main = (props) => {
         if (props.activeCell.includes(0) || props.activeCell.includes(11)) {
             props.incLevel()
             props.history.push('/win');
+        } else {
+            props.isOver();
         }
         if (!props.start) {
             setTimeout(() => {
@@ -36,7 +38,7 @@ const Main = (props) => {
             startGame(props.level)
         } else {
             isWin();
-            props.isOver();
+            
         }
     }, [props.activeCell, props.start]);
 
